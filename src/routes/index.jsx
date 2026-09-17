@@ -6,6 +6,7 @@ import Dashboard from "../layout/dashboardLayout";
 import amenitiesRoutes from "./Amenities.routes";
 import highlightsRoutes from "./Highlights.routes";
 import galleryRoutes from "./Gallery.routes";
+import testimonialsRoutes from "./Testimonials.routes";
 
 const appRoutes = [
   {
@@ -16,7 +17,12 @@ const appRoutes = [
   {
     path: "/dashboard",
     element: <Dashboard />,
-    children: [...amenitiesRoutes, ...highlightsRoutes, ...galleryRoutes],
+    children: [
+      ...amenitiesRoutes,
+      ...highlightsRoutes,
+      ...galleryRoutes,
+      ...testimonialsRoutes,
+    ],
   },
 ];
 

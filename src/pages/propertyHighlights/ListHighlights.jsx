@@ -9,7 +9,7 @@ import {
 
 import { useNavigate } from "react-router-dom";
 
-import { getHighlights } from "../../api/highlights.api";
+import { getHighlights, postHighlights } from "../../api/highlights.api";
 
 const ListPropertyHighlights = () => {
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ const ListPropertyHighlights = () => {
   }, []);
 
   const handleEdit = (record) => {
-    navigate("/dashboard/property-highlights/add", {
+    navigate("/dashboard/highlights/add", {
       state: {
         highlight: record,
       },
@@ -56,7 +56,7 @@ const ListPropertyHighlights = () => {
         status: "inactive",
       };
 
-      await postPropertyHighlight(payload);
+      await postHighlights(payload);
 
       message.success("Property highlight marked as inactive");
 
@@ -118,7 +118,7 @@ const ListPropertyHighlights = () => {
       key: "status",
       width: 120,
       render: (value) => (
-        <Tag color={value === "active" ? "success" : "default"}>
+        <Tag color={value === "active" ? "success" : "default"} className="font-semibold">
           {value?.toUpperCase()}
         </Tag>
       ),
@@ -182,7 +182,7 @@ const ListPropertyHighlights = () => {
             Property Highlights
           </h1>
 
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-base text-gray-500">
             Manage property highlights.
           </p>
         </div>

@@ -14,3 +14,19 @@ body,
 body {
   font-family: Arial, sans-serif;
 }
+
+/* body cells */
+.ant-table-tbody > tr > td {
+  font-size: 16px; /* Tailwind text-base equivalent */
+}
+
+/* header cells */
+.ant-table-thead > tr > th {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* pagination */
+.ant-pagination {
+  font-size: 16px;
+}

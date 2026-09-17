@@ -59,6 +59,22 @@ const menuItems = [
       },
     ],
   },
+  {
+    key: "testimonials",
+    label: "Testimonials",
+    children: [
+      {
+        key: "/dashboard/testimonial/add",
+        label: "Add Testimonials",
+        icon: <PlusOutlined />,
+      },
+      {
+        key: "/dashboard/testimonial/list",
+        label: "List Testimonials",
+        icon: <UnorderedListOutlined />,
+      },
+    ],
+  },
 ];
 
 const Sidebar = () => {

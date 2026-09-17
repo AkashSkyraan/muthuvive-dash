@@ -44,7 +44,7 @@ const AddAmenity = () => {
 
       const response = await postAmenity(payload);
 
-      console.log(record?.id ? "Amenity updated:" : "Amenity added:", response);
+      // console.log(record?.id ? "Amenity updated:" : "Amenity added:", response);
 
       message.success(
         record?.id
@@ -77,7 +77,7 @@ const AddAmenity = () => {
           {record?.id ? "Update Amenity" : "Add Amenity"}
         </h1>
 
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-base text-gray-500">
           {record?.id
             ? "Update the amenity for your property listings."
             : "Add a new amenity to your property listings."}
@@ -88,7 +88,7 @@ const AddAmenity = () => {
       <div className="w-full max-w-xl bg-white border border-gray-200 rounded-lg p-5 sm:p-6">
         <Form form={form} layout="vertical" onFinish={handleFinish}>
           <Form.Item
-            label="Amenity Name"
+            label={<span className="text-lg">Amenity Name</span>}
             name="name"
             rules={[
               {

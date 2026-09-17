@@ -75,7 +75,7 @@ const AddGallery = () => {
           Add Gallery
         </h1>
 
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-base text-gray-500">
           Upload a property image and add its details.
         </p>
       </div>
@@ -84,7 +84,7 @@ const AddGallery = () => {
       <div className="w-full max-w-xl bg-white border border-gray-200 rounded-lg p-5 sm:p-6">
         <Form form={form} layout="vertical" onFinish={handleFinish}>
           {/* Image */}
-          <Form.Item label="Gallery Image">
+          <Form.Item label={<span className="text-lg">Gallery Image</span>}>
             <Upload
               maxCount={1}
               accept="image/*"
@@ -105,7 +105,7 @@ const AddGallery = () => {
 
           {/* Type */}
           <Form.Item
-            label="Type"
+            label={<span className="text-lg">Type</span>}
             name="type"
             rules={[
               {
@@ -123,7 +123,7 @@ const AddGallery = () => {
 
           {/* Is Hero */}
           <Form.Item
-            label="Is Hero Image"
+            label={<span className="text-lg">Is Hero Image</span>}
             name="is_hero"
             rules={[
               {

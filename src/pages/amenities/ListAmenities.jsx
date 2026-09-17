@@ -23,7 +23,7 @@ const ListAmenities = () => {
 
       const response = await getAmenity();
 
-      console.log("Amenities:", response);
+      // console.log("Amenities:", response);
 
       setAmenities(response || []);
     } catch (error) {
@@ -120,7 +120,10 @@ const ListAmenities = () => {
       key: "status",
       width: 120,
       render: (value) => (
-        <Tag color={value === "active" ? "success" : "default"}>
+        <Tag
+          color={value === "active" ? "success" : "default"}
+          className="font-semibold"
+        >
           {value?.toUpperCase()}
         </Tag>
       ),
@@ -188,7 +191,7 @@ const ListAmenities = () => {
             Amenities
           </h1>
 
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-base text-gray-500">
             Manage property amenities.
           </p>
         </div>
@@ -197,7 +200,7 @@ const ListAmenities = () => {
         <Select
           value={status}
           onChange={setStatus}
-          className="w-32"
+          className="w-32 !text-base"
           options={[
             {
               value: "active",
@@ -212,7 +215,7 @@ const ListAmenities = () => {
       </div>
 
       {/* Table */}
-      <div className="w-full bg-white border border-gray-200 rounded-lg">
+      <div className="w-full bg-white border text-base border-gray-200 rounded-lg">
         <Table
           rowKey="id"
           columns={columns}

@@ -52,16 +52,17 @@ const ListGallery = () => {
   const handleInactive = async (record) => {
     try {
       setLoading(true);
+      const imagePath = record.image.split("uploads/")[1];
 
       const payload = {
         id: record.id,
-        image: record.image,
+        image: `uploads/${imagePath}`,
         type: record.type,
         status: "inactive",
         is_hero: record.is_hero,
       };
 
-      console.log("Inactive gallery payload:", payload);
+      //   console.log("Inactive gallery payload:", payload);
 
       await postGallery(payload);
 
@@ -139,7 +140,7 @@ const ListGallery = () => {
       width: 120,
       render: (isHero) => (
         <span
-          className={`inline-flex px-2.5 py-1 rounded-md text-xs font-medium ${
+          className={`inline-flex px-2.5 py-1 rounded-md text-sm font-medium ${
             Number(isHero) === 1
               ? "bg-green-100 text-green-700"
               : "bg-gray-100 text-gray-600"
@@ -157,7 +158,7 @@ const ListGallery = () => {
       width: 120,
       render: (status) => (
         <span
-          className={`inline-flex px-2.5 py-1 rounded-md text-xs font-medium ${
+          className={`inline-flex px-2.5 py-1 rounded-md text-sm font-medium ${
             status === "active"
               ? "bg-green-100 text-green-700"
               : "bg-red-100 text-red-700"
@@ -182,7 +183,12 @@ const ListGallery = () => {
               cancelText="No"
               onConfirm={() => handleInactive(record)}
             >
-              <Button danger size="small" icon={<StopOutlined />}>
+              <Button
+                className="!text-sm"
+                danger
+                size="small"
+                icon={<StopOutlined />}
+              >
                 Inactive
               </Button>
             </Popconfirm>
@@ -200,7 +206,7 @@ const ListGallery = () => {
           Gallery
         </h1>
 
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-base text-gray-500">
           View and manage your gallery images.
         </p>
       </div>

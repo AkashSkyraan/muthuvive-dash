@@ -6,7 +6,7 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   const handleLogout = () => {
-    console.log("Logout clicked");
+    // console.log("Logout clicked");
     setOpen(false);
   };
 

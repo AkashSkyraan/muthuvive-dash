@@ -24,7 +24,7 @@ const LoginPage = () => {
     e.preventDefault();
     setLoading(true);
 
-    console.log("Login submitted:", form);
+    // console.log("Login submitted:", form);
 
     setTimeout(() => setLoading(false), 1000);
   };
