@@ -1,157 +1,157 @@
 import React, { useState } from "react";
-import {
-  LockOutlined,
-  UserOutlined,
-  EyeOutlined,
-  EyeInvisibleOutlined,
-} from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import { images } from "../../config/Images";
 
-// Change these two for each new client — everything else stays the same
-const BRAND_NAME = "Muthuvive's Properties";
-const WELCOME_TEXT = "Hello 👋 Welcome!";
+import { preventInvalidSpaces } from "../../utils/helper";
+import Button from "../../component/Button";
 
-const LoginPage = () => {
-  const [form, setForm] = useState({ username: "", password: "" });
+function EyeIcon({ visible }) {
+  return visible ? (
+    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+      <path
+        d="M2.5 12s3.5-5.5 9.5-5.5 9.5 5.5 9.5 5.5-3.5 5.5-9.5 5.5S2.5 12 2.5 12Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <circle cx="12" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  ) : (
+    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+      <path
+        d="M3 3l18 18"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
+      <path
+        d="M10.6 6.7A10.4 10.4 0 0 1 12 6.5c6 0 9.5 5.5 9.5 5.5a17 17 0 0 1-3.1 3.5M6.1 6.9C3.8 8.5 2.5 12 2.5 12s3.5 5.5 9.5 5.5c.8 0 1.5-.1 2.2-.3"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [identifier, setIdentifier] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+  const isMobile = /^\d+$/.test(identifier) && identifier.length > 0;
+
+  const handleIdentifierChange = (e) => {
+    setIdentifier(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    // console.log("Login submitted:", form);
-
-    setTimeout(() => setLoading(false), 1000);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // console.log("Login submitted");
   };
 
   return (
-    <div className="min-h-screen w-full bg-gray-50 flex items-center justify-center px-4 py-10">
-      <div className="w-full max-w-lg h-full">
-        {/* Purple banner with curved bottom edge */}
-        {/* <div className="relative rounded-t-3xl overflow-hidden bg-gradient-to-br from-[#1158eb] via-indigo-400 to-sky-200 pt-10 pb-16 text-center">
-          <h1 className="text-white text-2xl font-bold tracking-widest">
-            {BRAND_NAME}
-          </h1>
-          <span className="inline-block mt-4 px-4 py-1.5 rounded-full bg-white/15 text-white text-sm backdrop-blur-sm">
-            {WELCOME_TEXT}
-          </span>
+    <>
+      <div className="flex h-[10px] w-full items-center justify-center">
+        <img src={images.logo} alt="Logo" className="w-[180px]" />
+      </div>
 
-          <svg
-            className="absolute -bottom-px left-0 w-full"
-            viewBox="0 0 500 40"
-            preserveAspectRatio="none"
+      <h4 className="mt-8 text-4xl font-bold tracking-tight text-gray-900">
+        Login
+      </h4>
+
+      <p className="mt-3 text-sm leading-5 text-gray-500">
+        Highlight the best of your properties by using the List
+        <br className="hidden sm:block" />
+        Category shortcode. You can list categories
+      </p>
+
+      <form onSubmit={handleSubmit} className="mt-9 text-left">
+        {/* Email / Mobile */}
+        <div>
+          <label
+            htmlFor="identifier"
+            className="mb-2 block text-sm font-medium text-gray-800"
           >
-            <path
-              d="M0,0 C125,40 375,40 500,0 L500,40 L0,40 Z"
-              fill="#f9fafb"
-            />
-          </svg>
-        </div> */}
+            UserName
+          </label>
 
-        {/* Login Card — overlaps the banner */}
-        <div className="relative -mt-10 mx-4 sm:mx-8 bg-white rounded-2xl shadow-xl p-6 sm:p-8">
-          <div className="text-center mb-6">
-            <h2 className="text-xl font-semibold text-gray-800">Login</h2>
-            <p className="text-sm text-gray-400 mt-1">
-              Please login to admin dashboard
-            </p>
+          <div className="flex h-10 w-full overflow-hidden rounded-lg border border-gray-200 bg-white">
+            <input
+              id="identifier"
+              type="text"
+              value={identifier}
+              onChange={handleIdentifierChange}
+              onKeyDown={preventInvalidSpaces}
+              placeholder={
+                isMobile ? "Enter phone number" : "Enter your Email or Mobile"
+              }
+              autoComplete="username"
+              required
+              className="min-w-0 flex-1 bg-transparent px-3 text-sm text-gray-900 !outline-none placeholder:text-gray-400"
+            />
+          </div>
+        </div>
+
+        {/* Password */}
+        <div className="mt-5">
+          <label
+            htmlFor="password"
+            className="mb-2 block text-sm font-medium text-gray-800"
+          >
+            Password
+          </label>
+
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter your Password"
+              autoComplete="current-password"
+              required
+              onKeyDown={preventInvalidSpaces}
+              className="h-10 w-full rounded-lg border border-gray-200 bg-white px-3 pr-11 text-sm text-gray-900 outline-none transition placeholder:text-gray-400"
+            />
+
+            <Button
+              type="text"
+              onClick={() => setShowPassword((prev) => !prev)}
+              ariaLabel={showPassword ? "Hide password" : "Show password"}
+              className="!absolute !right-1 !top-1/2 !m-0 !flex !h-8 !w-8 !-translate-y-1/2 !items-center !justify-center !p-0 !text-gray-400 hover:!text-gray-700"
+            >
+              <EyeIcon visible={showPassword} />
+            </Button>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Username */}
-            <div>
-              <label
-                htmlFor="username"
-                className="block text-sm font-medium text-gray-600 mb-1"
-              >
-                Email / Username<span className="text-red-500">*</span>
-              </label>
-              <div className="relative">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 text-sm">
-                  <UserOutlined />
-                </span>
-                <input
-                  id="username"
-                  name="username"
-                  type="text"
-                  autoComplete="username"
-                  required
-                  value={form.username}
-                  onChange={handleChange}
-                  placeholder="admin@company.com"
-                  className="w-full pl-9 pr-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition !text-sm"
-                />
-              </div>
-            </div>
-
-            {/* Password */}
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-600 mb-1"
-              >
-                Password<span className="text-red-500">*</span>
-              </label>
-              <div className="relative">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 text-sm">
-                  <LockOutlined />
-                </span>
-                <input
-                  id="password"
-                  name="password"
-                  type={showPassword ? "text" : "password"}
-                  autoComplete="current-password"
-                  required
-                  value={form.password}
-                  onChange={handleChange}
-                  placeholder="••••••••"
-                  className="w-full pl-9 pr-9 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword((prev) => !prev)}
-                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 text-sm"
-                >
-                  {showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
-                </button>
-              </div>
-            </div>
-
-            {/* Remember + Forgot */}
-            {/* <div className="flex items-center justify-between text-xs">
-              <label className="flex items-center gap-1.5 text-gray-500 cursor-pointer">
-                <input
-                  type="checkbox"
-                  className="h-3.5 w-3.5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
-                />
-                Remember me
-              </label>
-              <a
-                href="#"
-                className="text-purple-600 hover:text-purple-700 font-medium"
-              >
-                Forgot password?
-              </a>
-            </div> */}
-
-            {/* Submit */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-500 disabled:bg-blue-500 text-white text-sm font-medium py-2.5 rounded-lg transition-colors cursor-pointer"
+          <div className="mt-2 text-right">
+            <Link
+              to="/forgot-password"
+              className="text-sm font-medium text-blue-600 transition hover:text-blue-700 hover:underline"
             >
-              {loading ? "Signing in..." : "Login"}
-            </button>
-          </form>
+              Forgot Password?
+            </Link>
+          </div>
         </div>
-      </div>
-    </div>
-  );
-};
 
-export default LoginPage;
+        <Button
+          htmlType="submit"
+          type="primary"
+          className="mt-6 !h-12 w-full rounded-lg bg-[#165BEF] text-md font-semibold text-white shadow-sm transition hover:bg-[#0f4ed8] hover:shadow-md active:scale-[0.99]"
+        >
+          Login
+        </Button>
+      </form>
+
+      <p className="mt-7 text-center text-sm text-gray-500">
+        You don’t have Account?{" "}
+        <Link
+          to="/signup"
+          className="font-semibold text-blue-600 hover:underline"
+        >
+          Sign Up
+        </Link>
+      </p>
+    </>
+  );
+}
+
+export default Login;

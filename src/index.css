@@ -1,32 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
+
 @import "tailwindcss";
 
-* {
-  box-sizing: border-box;
-}
+@theme {
+  /* Colors */
+  --color-primary: #FFFFFF;
+  --color-secondary: #1158EB;
 
-html,
-body,
-#root {
-  margin: 0;
-  min-height: 100%;
+  /* Fonts */
+  --font-primary: "DM Sans", sans-serif;
+  --font-heading: "DM Sans", sans-serif;
 }
 
 body {
-  font-family: Arial, sans-serif;
+  margin: 0;
 }
 
-/* body cells */
-.ant-table-tbody > tr > td {
-  font-size: 16px; /* Tailwind text-base equivalent */
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: var(--font-primary)
 }
 
-/* header cells */
-.ant-table-thead > tr > th {
-  font-size: 16px;
-  font-weight: 600;
+@keyframes marquee-team {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
-/* pagination */
-.ant-pagination {
-  font-size: 16px;
+.animate-marquee-team {
+  display: flex;
+  width: max-content; /* container fits content */
+  animation: marquee-team 30s linear infinite;
+  will-change: transform;
+}
+
+/* Ant Design Select - focused state */
+.ant-select {
+  --ant-select-active-border-color: #000000 !important;
+  --ant-select-hover-border-color: #000000 !important;
+  --ant-select-active-outline-color: rgba(0, 0, 0, 0.1) !important;
+  --ant-select-active-outline-width: 2px !important;
+}
+
+.ant-select:hover .ant-select-selector {
+  border-color: #000000 !important;
+}
+
+.ant-select-focused .ant-select-selector {
+  border-color: #000000 !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* =========================================
+   Ant Design Input - Focus
+   ========================================= */
+
+.ant-input:focus,
+.ant-input-focused {
+  border-color: #000 !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08) !important;
+}
+
+.ant-input.ant-input-outlined:focus,
+.ant-input.ant-input-outlined.ant-input-focused {
+  border-color: #000000 !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08) !important;
+  outline: none !important;
+}
+
+/* Ant Design Input */
+.ant-input:hover {
+  border-color: #000 !important;
+}
+
+.ant-input:focus,
+.ant-input-focused {
+  border-color: #000 !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08) !important;
+  outline: none !important;
+}
+
+.image-preview-modal .ant-modal-content {
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.image-preview-modal .ant-modal-body {
+  padding: 0 !important;
+}
+
+/* ============================================================
+   Ant Design Collapse - Remove horizontal content padding
+   ============================================================ */
+
+.property-info-collapse .ant-collapse-content-box {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.property-category-dropdown .ant-select-item-option-content {
+  font-size: 1rem !important;
+}
+
+
+/* ============================================================
+   Ant Design Small Dropdowns
+   ============================================================ */
+
+.small-unit-select {
+  --ant-select-hover-border-color: transparent !important;
+  --ant-select-active-border-color: transparent !important;
+  --ant-select-active-outline-color: transparent !important;
+  --ant-select-active-outline-width: 0px !important;
+}
+
+/* Normal */
+.small-unit-select .ant-select-selector {
+  border-color: transparent !important;
+  box-shadow: none !important;
+  /* background: #ffffff !important; */
+}
+
+/* Hover - important because global .ant-select:hover also exists */
+.ant-select.small-unit-select:hover .ant-select-selector {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Focus */
+.ant-select.small-unit-select.ant-select-focused .ant-select-selector {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Open */
+.ant-select.small-unit-select.ant-select-open .ant-select-selector {
+  border-color: transparent !important;
+  box-shadow: none !important;
 }

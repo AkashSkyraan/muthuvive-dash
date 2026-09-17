@@ -7,11 +7,18 @@ import amenitiesRoutes from "./Amenities.routes";
 import highlightsRoutes from "./Highlights.routes";
 import galleryRoutes from "./Gallery.routes";
 import testimonialsRoutes from "./Testimonials.routes";
+import AuthLayout from "../layout/AuthLayout";
 
 const appRoutes = [
   {
-    path: "/",
-    element: <Login />,
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "/login",
+        element: <Login />,
+      },
+     
+    ],
   },
 
   {
