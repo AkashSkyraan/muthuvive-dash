@@ -8,6 +8,9 @@ import amenitiesRoutes from "./Amenities.routes";
 import highlightsRoutes from "./Highlights.routes";
 import galleryRoutes from "./Gallery.routes";
 
+import SellPropertyLayout from "../layout/SellPropertyLayout";
+import amenitiesRoutes from "./Amenities.routes";
+import addpropertiesRoutes from "./SellPropertyForm.routes";
 import AuthLayout from "../layout/AuthLayout";
 
 import { AuthProvider } from "../context/AuthContext";
@@ -37,24 +40,25 @@ const appRoutes = [
   // PROTECTED ADMIN ROUTES
   // =========================
   {
-    element: <ProtectedRoute allowedRoles={["admin", "subadmin"]} />,
+    path: "/dashboard",
+    element: <Dashboard />,
     children: [
-      {
-        path: "/admin/dashboard",
-        element: <Dashboard />,
-        children: [
-          ...amenitiesRoutes,
-          ...highlightsRoutes,
-          ...galleryRoutes,
-          ...subAdminRoutes,
-          ...planRoutes,
-          ...propertyAreaRoutes,
-          ...aboutUsRoutes,
-          ...enquiryRoutes,
-          ...constructionConsultantRoutes
-        ],
-      },
+      ...amenitiesRoutes,
+      ...highlightsRoutes,
+      ...galleryRoutes,
+      ...testimonialsRoutes,
+      ...aboutUsRoutes,
+      ...enquiryRoutes,
+      propertyAreaRoutes,
+      ...constructionConsultantRoutes,
+      ...subAdminRoutes,
+      ...planRoutes,
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <SellPropertyLayout />,
+    children: [...addpropertiesRoutes],
   },
 ];
 

@@ -33,22 +33,24 @@ const AddPropertyHighlight = () => {
         payload = {
           id: record.id,
           name: values.name,
+          status: "active",
         };
       } else {
         // Add
         payload = {
           name: values.name,
+          status: "active",
         };
       }
 
       const response = await postHighlights(payload);
 
-      console.log(
-        record?.id
-          ? "Property highlight updated:"
-          : "Property highlight added:",
-        response,
-      );
+      //   console.log(
+      //     record?.id
+      //       ? "Property highlight updated:"
+      //       : "Property highlight added:",
+      //     response,
+      //   );
 
       message.success(
         record?.id
@@ -84,7 +86,7 @@ const AddPropertyHighlight = () => {
           {record?.id ? "Update Property Highlight" : "Add Property Highlight"}
         </h1>
 
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-base text-gray-500">
           {record?.id
             ? "Update the property highlight."
             : "Add a new property highlight."}
@@ -95,7 +97,7 @@ const AddPropertyHighlight = () => {
       <div className="w-full max-w-xl bg-white border border-gray-200 rounded-lg p-5 sm:p-6">
         <Form form={form} layout="vertical" onFinish={handleFinish}>
           <Form.Item
-            label="Property Highlight"
+            label={<span className="text-lg">Property Highlights</span>}
             name="name"
             rules={[
               {
