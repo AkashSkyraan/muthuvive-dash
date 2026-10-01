@@ -1,0 +1,483 @@
+/* ==========================================================================
+   PROPERTY STEPPER
+   ========================================================================== */
+
+
+/* ==========================================================================
+   COMMON
+   ========================================================================== */
+
+.property-stepper {
+  width: 100%;
+}
+
+
+/* ==========================================================================
+   ANT DESIGN DEFAULT ICON RESET
+   ========================================================================== */
+
+.property-stepper .ant-steps-item-icon {
+  width: auto !important;
+  height: auto !important;
+
+  margin-inline-end: 14px !important;
+
+  background: transparent !important;
+  border: none !important;
+
+  line-height: normal !important;
+}
+
+
+/* ==========================================================================
+   STEP TITLE
+   ========================================================================== */
+
+.property-stepper .ant-steps-item-title {
+  padding-inline-end: 0 !important;
+
+  line-height: 1.4 !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Remove Ant Design's default title pseudo element
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper .ant-steps-item-title::after {
+  display: none !important;
+}
+
+
+/* ==========================================================================
+   DESKTOP / VERTICAL STEPPER
+   ========================================================================== */
+
+
+/*
+|--------------------------------------------------------------------------
+| Step item
+|--------------------------------------------------------------------------
+|
+| position: relative allows us to position our custom connector
+| relative to each step.
+|
+*/
+
+.property-stepper-desktop.ant-steps-vertical
+  .ant-steps-item {
+  position: relative !important;
+
+  padding-bottom: 34px !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Last step
+|--------------------------------------------------------------------------
+|
+| No extra spacing after the last step.
+|
+*/
+
+.property-stepper-desktop.ant-steps-vertical
+  .ant-steps-item:last-child {
+  padding-bottom: 0 !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Vertical content
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper-desktop.ant-steps-vertical
+  .ant-steps-item-content {
+  min-height: 55px !important;
+}
+
+
+/* ==========================================================================
+   HIDE ANT DESIGN VERTICAL CONNECTORS
+   ========================================================================== */
+
+
+/*
+|--------------------------------------------------------------------------
+| Your Ant Design version uses:
+|
+| .ant-steps-item-rail
+|
+| as the visible connector.
+|
+*/
+
+.property-stepper-desktop.ant-steps-vertical
+  .ant-steps-item-rail {
+  display: none !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Hide the different rail states as well
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper-desktop.ant-steps-vertical
+  .ant-steps-item-rail-wait,
+.property-stepper-desktop.ant-steps-vertical
+  .ant-steps-item-rail-process,
+.property-stepper-desktop.ant-steps-vertical
+  .ant-steps-item-rail-finish {
+  display: none !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Fallback for Ant Design versions that use .ant-steps-item-tail
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper-desktop.ant-steps-vertical
+  .ant-steps-item-tail {
+  display: none !important;
+}
+
+
+/* ==========================================================================
+   CUSTOM VERTICAL CONNECTOR
+   ========================================================================== */
+
+
+/*
+|--------------------------------------------------------------------------
+| Create our own connector
+|--------------------------------------------------------------------------
+|
+| Our custom StepCircle:
+|
+| width  = 44px
+| height = 44px
+|
+| Center:
+|
+| 44 / 2 = 22px
+|
+| Therefore the connector is positioned at 22px.
+|
+*/
+
+.property-stepper-desktop.ant-steps-vertical
+  .ant-steps-item:not(:last-child)::after {
+  content: "";
+
+  position: absolute;
+
+  left: 22px;
+
+  top: 44px;
+  bottom: 0;
+
+  width: 1px;
+
+  background-color: #d1d5db;
+
+  transform: translateX(-50%);
+
+  transition:
+    background-color 0.3s ease;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Completed vertical connector
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper-desktop.ant-steps-vertical
+  .ant-steps-item-finish:not(:last-child)::after {
+  background-color: var(--color-secondary);
+}
+
+
+/* ==========================================================================
+   DESKTOP STEP TITLE COLORS
+   ========================================================================== */
+
+
+/*
+|--------------------------------------------------------------------------
+| Pending step
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper-desktop
+  .ant-steps-item-wait
+  .ant-steps-item-title {
+  color: #111827 !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Current / active step
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper-desktop
+  .ant-steps-item-process
+  .ant-steps-item-title {
+  color: var(--color-secondary) !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Completed step
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper-desktop
+  .ant-steps-item-finish
+  .ant-steps-item-title {
+  color: var(--color-secondary) !important;
+}
+
+
+/* ==========================================================================
+   MOBILE + TABLET / HORIZONTAL STEPPER
+   ========================================================================== */
+
+
+/*
+|--------------------------------------------------------------------------
+| Horizontal step width
+|--------------------------------------------------------------------------
+|
+| Each step gets 170px.
+|
+| 170px × 5 steps = approximately 850px.
+|
+| The parent container can scroll horizontally.
+|
+*/
+
+.property-stepper-mobile.ant-steps-horizontal
+  .ant-steps-item {
+  flex: 0 0 170px !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Horizontal title
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper-mobile
+  .ant-steps-item-title {
+  margin-top: 10px !important;
+
+  text-align: center !important;
+
+  font-size: 13px !important;
+
+  line-height: 1.4 !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Horizontal icon
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper-mobile
+  .ant-steps-item-icon {
+  margin-inline-end: 0 !important;
+}
+
+
+/* ==========================================================================
+   HIDE ANT DESIGN HORIZONTAL CONNECTOR
+   ========================================================================== */
+
+
+/*
+|--------------------------------------------------------------------------
+| Hide rail if AntD uses rail
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper-mobile
+  .ant-steps-item-rail {
+  display: none !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Hide rail states
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper-mobile
+  .ant-steps-item-rail-wait,
+.property-stepper-mobile
+  .ant-steps-item-rail-process,
+.property-stepper-mobile
+  .ant-steps-item-rail-finish {
+  display: none !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Hide tail if AntD uses tail
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper-mobile
+  .ant-steps-item-tail {
+  display: none !important;
+}
+
+
+/* ==========================================================================
+   CUSTOM HORIZONTAL CONNECTOR
+   ========================================================================== */
+
+
+/*
+|--------------------------------------------------------------------------
+| Create our own horizontal connector
+|--------------------------------------------------------------------------
+|
+| Circle:
+|
+| 44px × 44px
+|
+| Center:
+|
+| 22px
+|
+| Therefore the connector sits exactly in the middle of the circle.
+|
+*/
+
+.property-stepper-mobile.ant-steps-horizontal
+  .ant-steps-item:not(:last-child)::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+
+  top: 22px;
+
+  width: 100%;
+
+  height: 1px;
+
+  background-color: #d1d5db;
+
+  transform: translateY(-50%);
+
+  transition:
+    background-color 0.3s ease;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Completed horizontal connector
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper-mobile.ant-steps-horizontal
+  .ant-steps-item-finish:not(:last-child)::after {
+  background-color: var(--color-secondary);
+}
+
+
+/* ==========================================================================
+   MOBILE + TABLET STEP TITLE COLORS
+   ========================================================================== */
+
+
+/*
+|--------------------------------------------------------------------------
+| Pending
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper-mobile
+  .ant-steps-item-wait
+  .ant-steps-item-title {
+  color: #111827 !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Current / active
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper-mobile
+  .ant-steps-item-process
+  .ant-steps-item-title {
+  color: var(--color-secondary) !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Completed
+|--------------------------------------------------------------------------
+*/
+
+.property-stepper-mobile
+  .ant-steps-item-finish
+  .ant-steps-item-title {
+  color: var(--color-secondary) !important;
+}
+
+
+/* ==========================================================================
+   SMALL MOBILE
+   ========================================================================== */
+
+@media (max-width: 640px) {
+
+  /*
+  |--------------------------------------------------------------------------
+  | Smaller width per step
+  |--------------------------------------------------------------------------
+  */
+
+  .property-stepper-mobile.ant-steps-horizontal
+    .ant-steps-item {
+    flex: 0 0 155px !important;
+  }
+
+
+  /*
+  |--------------------------------------------------------------------------
+  | Smaller title
+  |--------------------------------------------------------------------------
+  */
+
+  .property-stepper-mobile
+    .ant-steps-item-title {
+    font-size: 12px !important;
+  }
+
+}

@@ -3,10 +3,12 @@ import { BrowserRouter, useRoutes } from "react-router-dom";
 
 import Login from "../pages/auth/Login";
 import Dashboard from "../layout/dashboardLayout";
+import SellPropertyLayout from "../layout/SellPropertyLayout";
 import amenitiesRoutes from "./Amenities.routes";
 import highlightsRoutes from "./Highlights.routes";
 import galleryRoutes from "./Gallery.routes";
 import testimonialsRoutes from "./Testimonials.routes";
+import addpropertiesRoutes from "./SellPropertyForm.routes";
 import AuthLayout from "../layout/AuthLayout";
 
 const appRoutes = [
@@ -17,7 +19,6 @@ const appRoutes = [
         path: "/login",
         element: <Login />,
       },
-     
     ],
   },
 
@@ -30,6 +31,11 @@ const appRoutes = [
       ...galleryRoutes,
       ...testimonialsRoutes,
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <SellPropertyLayout />,
+    children: [...addpropertiesRoutes],
   },
 ];
 

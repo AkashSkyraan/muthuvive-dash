@@ -75,6 +75,22 @@ const menuItems = [
       },
     ],
   },
+  {
+    key: "add-property",
+    label: "Properties",
+    children: [
+      {
+        key: "/dashboard/add-property",
+        label: "Add Property",
+        icon: <PlusOutlined />,
+      },
+      {
+        key: "/dashboard/list-property",
+        label: "List Properties",
+        icon: <UnorderedListOutlined />,
+      },
+    ],
+  },
 ];
 
 const Sidebar = () => {
