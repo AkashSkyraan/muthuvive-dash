@@ -6,17 +6,21 @@ import Sidebar from "../components/sideBar";
 
 const Dashboard = () => {
   return (
-    <div className="flex w-full min-h-screen">
-      {/* Sidebar */}
-      <Sidebar />
+    <div className="flex h-screen w-full overflow-hidden">
+      {/* Sidebar - Fixed / Separate Scroll */}
+      <div className="h-screen shrink-0 overflow-y-auto">
+        <Sidebar />
+      </div>
 
-      {/* Main Section */}
-      <div className="flex flex-1 min-w-0 flex-col">
-        {/* Header */}
-        <Header />
+      {/* Right Section */}
+      <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
+        {/* Header - Fixed */}
+        <div className="shrink-0">
+          <Header />
+        </div>
 
-        {/* Content */}
-        <main className="flex-1 p-6">
+        {/* Right Content - Separate Scroll */}
+        <main className="min-h-0 flex-1 overflow-y-auto p-6">
           <Outlet />
         </main>
       </div>

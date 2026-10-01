@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { images } from "../../config/Images";
+import { Link, useNavigate } from "react-router-dom";
+import { message } from "antd";
 
+import { images } from "../../config/Images";
 import { preventInvalidSpaces } from "../../utils/helper";
 import Button from "../../component/Button";
+import { LoginAdminRequest } from "../../api/auth.api";
+import axiosInstance from "../../api/axios";
+import { useAuth } from "../../context/AuthContext";
 
 function EyeIcon({ visible }) {
   return visible ? (
@@ -35,8 +39,13 @@ function EyeIcon({ visible }) {
 }
 
 function Login() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const isMobile = /^\d+$/.test(identifier) && identifier.length > 0;
 
@@ -44,9 +53,43 @@ function Login() {
     setIdentifier(e.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // console.log("Login submitted");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+
+      const response = await axiosInstance.post("/admin/login-admin", {
+        name: identifier,
+        password,
+      });
+
+      console.log("LOGIN RESPONSE:", response.data);
+
+      if (response?.data?.success === 1) {
+        const userData = response.data.data[0];
+
+        console.log("USER DATA:", userData);
+        console.log("ROLE:", userData.role);
+
+        // Update AuthContext
+        login(userData);
+
+        navigate("/admin/dashboard", {
+          replace: true,
+        });
+
+        return;
+      }
+
+      message.error(response?.data?.message || "Invalid username or password");
+    } catch (error) {
+      console.error("Login Error:", error?.response?.data || error);
+
+      message.error(error?.response?.data?.message || "Login failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -66,7 +109,7 @@ function Login() {
       </p>
 
       <form onSubmit={handleSubmit} className="mt-9 text-left">
-        {/* Email / Mobile */}
+        {/* Username */}
         <div>
           <label
             htmlFor="identifier"
@@ -82,9 +125,7 @@ function Login() {
               value={identifier}
               onChange={handleIdentifierChange}
               onKeyDown={preventInvalidSpaces}
-              placeholder={
-                isMobile ? "Enter phone number" : "Enter your Email or Mobile"
-              }
+              placeholder={isMobile ? "Enter user Name" : "Enter User Name"}
               autoComplete="username"
               required
               className="min-w-0 flex-1 bg-transparent px-3 text-sm text-gray-900 !outline-none placeholder:text-gray-400"
@@ -105,6 +146,8 @@ function Login() {
             <input
               id="password"
               type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your Password"
               autoComplete="current-password"
               required
@@ -132,24 +175,17 @@ function Login() {
           </div>
         </div>
 
+        {/* Login Button */}
         <Button
           htmlType="submit"
           type="primary"
+          loading={loading}
+          disabled={loading}
           className="mt-6 !h-12 w-full rounded-lg bg-[#165BEF] text-md font-semibold text-white shadow-sm transition hover:bg-[#0f4ed8] hover:shadow-md active:scale-[0.99]"
         >
-          Login
+          {loading ? "Logging in..." : "Login"}
         </Button>
       </form>
-
-      <p className="mt-7 text-center text-sm text-gray-500">
-        You don’t have Account?{" "}
-        <Link
-          to="/signup"
-          className="font-semibold text-blue-600 hover:underline"
-        >
-          Sign Up
-        </Link>
-      </p>
     </>
   );
 }

@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, useRoutes } from "react-router-dom";
 
 import Login from "../pages/auth/Login";
 import Dashboard from "../layout/dashboardLayout";
+
 import amenitiesRoutes from "./Amenities.routes";
 import highlightsRoutes from "./Highlights.routes";
 import galleryRoutes from "./Gallery.routes";
+
 import AuthLayout from "../layout/AuthLayout";
 
+import { AuthProvider } from "../context/AuthContext";
+import ProtectedRoute from "./ProtectedRoutes";
+import subAdminRoutes from "./subadmin.routes";
+import planRoutes from "./plan.routes";
+import propertyAreaRoutes from "./propertyArea.routes";
+import aboutUsRoutes from "./Aboutus.routes";
+import enquiryRoutes from "./Enquiry.routes";
+import constructionConsultantRoutes from "./construct.routes";
+
 const appRoutes = [
+  // =========================
+  // AUTH ROUTES
+  // =========================
   {
     element: <AuthLayout />,
     children: [
@@ -16,14 +30,31 @@ const appRoutes = [
         path: "/login",
         element: <Login />,
       },
-     
     ],
   },
 
+  // =========================
+  // PROTECTED ADMIN ROUTES
+  // =========================
   {
-    path: "/dashboard",
-    element: <Dashboard />,
-    children: [...amenitiesRoutes, ...highlightsRoutes, ...galleryRoutes],
+    element: <ProtectedRoute allowedRoles={["admin", "subadmin"]} />,
+    children: [
+      {
+        path: "/admin/dashboard",
+        element: <Dashboard />,
+        children: [
+          ...amenitiesRoutes,
+          ...highlightsRoutes,
+          ...galleryRoutes,
+          ...subAdminRoutes,
+          ...planRoutes,
+          ...propertyAreaRoutes,
+          ...aboutUsRoutes,
+          ...enquiryRoutes,
+          ...constructionConsultantRoutes
+        ],
+      },
+    ],
   },
 ];
 
@@ -32,10 +63,13 @@ const AppRouter = () => {
 };
 
 const AppRoutes = () => {
+  const [user, setUser] = useState(null);
   return (
-    <BrowserRouter>
-      <AppRouter />
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <AppRouter />
+      </BrowserRouter>
+    </AuthProvider>
   );
 };
 
