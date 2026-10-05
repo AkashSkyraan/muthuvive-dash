@@ -43,7 +43,7 @@ const ListAmenities = () => {
 
   // Edit amenity
   const handleEdit = (record) => {
-    navigate(`/dashboard/amenities/add`, {
+    navigate(`/amenities/add`, {
       state: {
         amenity: record,
       },

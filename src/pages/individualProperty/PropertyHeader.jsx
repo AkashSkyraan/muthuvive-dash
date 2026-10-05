@@ -6,7 +6,7 @@ import icons from "../../config/Icons.jsx";
 import { showStatusMessage } from "../../components/common/MessagePopup.jsx";
 // import { postBookmark } from "../../../api/getProperties.api.js";
 import { IndianRupee } from "lucide-react";
-import { useAuth } from "../../context/UserContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 // import { useLoginModal } from "../../../context/LoginModalContext.jsx";
 
 const PropertyHeader = ({ data = {} }) => {

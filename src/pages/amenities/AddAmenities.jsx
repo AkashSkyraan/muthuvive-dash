@@ -99,6 +99,11 @@ const AddAmenity = () => {
                 whitespace: true,
                 message: "Amenity name cannot be empty",
               },
+              {
+                // min: 3,
+                max: 60,
+                message: "Amenity name must be maximum 60 characters",
+              },
             ]}
           >
             <Input placeholder="Enter amenity name" size="large" />

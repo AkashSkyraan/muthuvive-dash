@@ -18,14 +18,12 @@ export const AuthProvider = ({ children }) => {
         response?.data?.data?.length > 0
       ) {
         setUser(response.data.data[0]);
+        // console.log(response.data.data[0]);
       } else {
         setUser(null);
       }
     } catch (error) {
-      console.error(
-        "Auth Me Error:",
-        error?.response?.data || error.message
-      );
+      console.error("Auth Me Error:", error?.response?.data || error.message);
 
       setUser(null);
     } finally {
@@ -47,10 +45,7 @@ export const AuthProvider = ({ children }) => {
     try {
       await axiosInstance.post("/admin/logout");
     } catch (error) {
-      console.error(
-        "Logout Error:",
-        error?.response?.data || error.message
-      );
+      console.error("Logout Error:", error?.response?.data || error.message);
     } finally {
       setUser(null);
     }

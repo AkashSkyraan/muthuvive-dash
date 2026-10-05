@@ -22,7 +22,7 @@ import PattaSection from "./PropertyPatta.jsx";
 
 // import images from "../../../config/Images.jsx";
 
-import { useAuth } from "../../context/UserContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 import { getIndividualProperties } from "../../api/getProperties.api.js";
 import StatusMessage from "../../components/common/MessagePopup.jsx";

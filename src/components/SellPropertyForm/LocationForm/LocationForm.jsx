@@ -7,7 +7,7 @@ import { getLocationCategories } from "../../../api/propertyFormDropdown.api";
 import { useSellProperty } from "../../../context/SellPropertyContext";
 
 import { postSellPropertyForm } from "../../../api/sellPropertyForm.api";
-import { useAuth } from "../../../context/UserContext";
+import { useAuth } from "../../../context/AuthContext";
 
 // Dynamic data - replace with API response
 const countries = [{ value: "india", label: "India" }];
@@ -322,6 +322,10 @@ const LocationForm = () => {
   // ============================================================
 
   const handleNext = async () => {
+    if (!user?.id) {
+      console.error("User ID is not available yet");
+      return;
+    }
     const values = await form.validateFields();
 
     // Make sure the latest values are stored in Context

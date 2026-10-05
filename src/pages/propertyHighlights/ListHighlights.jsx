@@ -41,7 +41,7 @@ const ListPropertyHighlights = () => {
   }, []);
 
   const handleEdit = (record) => {
-    navigate("/dashboard/highlights/add", {
+    navigate("/highlights/add", {
       state: {
         highlight: record,
       },
@@ -118,7 +118,10 @@ const ListPropertyHighlights = () => {
       key: "status",
       width: 120,
       render: (value) => (
-        <Tag color={value === "active" ? "success" : "default"} className="font-semibold">
+        <Tag
+          color={value === "active" ? "success" : "default"}
+          className="font-semibold"
+        >
           {value?.toUpperCase()}
         </Tag>
       ),

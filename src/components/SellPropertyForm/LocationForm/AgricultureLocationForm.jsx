@@ -7,7 +7,7 @@ import { getLocationCategories } from "../../../api/propertyFormDropdown.api";
 import { useSellProperty } from "../../../context/SellPropertyContext";
 
 import { postSellPropertyForm } from "../../../api/sellPropertyForm.api";
-import { useAuth } from "../../../context/UserContext";
+import { useAuth } from "../../../context/AuthContext";
 
 // Dynamic data - replace with API response
 const countries = [{ value: "india", label: "India" }];

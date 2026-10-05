@@ -28,7 +28,7 @@ import { useSellProperty } from "../../../context/SellPropertyContext";
 import "../mediaForm/MediaForm.css";
 import { useNavigate } from "react-router-dom";
 import StatusMessage, { showStatusMessage } from "../../common/MessagePopup";
-import { useAuth } from "../../../context/UserContext";
+import { useAuth } from "../../../context/AuthContext";
 
 // ============================================================
 // FILE SIZE LIMITS
