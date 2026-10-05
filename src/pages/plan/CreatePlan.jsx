@@ -214,6 +214,7 @@ const CreatePlan = () => {
               ]}
             >
               <InputNumber
+              maxLength={11}
                 size="large"
                 className="!w-full"
                 min={0}
@@ -233,6 +234,7 @@ const CreatePlan = () => {
               ]}
             >
               <InputNumber
+              maxLength={11}
                 size="large"
                 className="!w-full"
                 min={0}

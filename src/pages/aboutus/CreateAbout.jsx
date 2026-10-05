@@ -173,10 +173,12 @@ const CreateAboutUs = () => {
               ]}
             >
               <Input
-                type="number"
+                type="text"
+                inputMode="numeric"
                 min={0}
                 size="large"
                 placeholder="Years of experience"
+                maxLength={11}
               />
             </Form.Item>
 
@@ -191,10 +193,12 @@ const CreateAboutUs = () => {
               ]}
             >
               <Input
-                type="number"
+                type="text"
+                inputMode="numeric"
                 min={0}
                 size="large"
                 placeholder="Projects"
+                maxLength={11}
               />
             </Form.Item>
 
@@ -208,7 +212,14 @@ const CreateAboutUs = () => {
                 },
               ]}
             >
-              <Input type="number" min={0} size="large" placeholder="Clients" />
+              <Input
+                type="text"
+                inputMode="numeric"
+                min={0}
+                size="large"
+                placeholder="Clients"
+                maxLength={11}
+              />
             </Form.Item>
 
             <Form.Item
@@ -221,7 +232,14 @@ const CreateAboutUs = () => {
                 },
               ]}
             >
-              <Input type="number" min={0} size="large" placeholder="Users" />
+              <Input
+                type="text"
+                inputMode="numeric"
+                min={0}
+                size="large"
+                placeholder="Users"
+                maxLength={11}
+              />
             </Form.Item>
           </div>
 
@@ -241,7 +259,7 @@ const CreateAboutUs = () => {
           >
             <Input.TextArea
               rows={3}
-              maxLength={500}
+              maxLength={255}
               showCount
               placeholder="Enter address"
             />
@@ -279,9 +297,9 @@ const CreateAboutUs = () => {
                 },
               ]}
             >
-              <Input size="large" placeholder="Email address" />
+              <Input size="large" placeholder="Email address" maxLength={255} />
             </Form.Item>
-          </div>
+          </div>  
 
           <h2 className="mb-4 mt-3 text-lg font-semibold text-gray-800">
             Construction Details

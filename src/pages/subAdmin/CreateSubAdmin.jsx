@@ -191,7 +191,7 @@ const CreateSubAdmin = () => {
               size="large"
               prefix={<UserOutlined />}
               placeholder="Enter sub admin name"
-              maxLength={100}
+              maxLength={50}
             />
           </Form.Item>
 
@@ -218,6 +218,7 @@ const CreateSubAdmin = () => {
             <Input.Password
               size="large"
               prefix={<LockOutlined />}
+              maxLength={15}
               placeholder={
                 isEdit
                   ? "Leave empty to keep current password"
