@@ -214,9 +214,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
   // const [collapsed, setCollapsed] = useState(false);
   const [openMenus, setOpenMenus] = useState({});
 
-  /* =======================================================
-     ROLE
-  ======================================================= */
+
 
   const userRole = String(user?.role || "")
     .trim()
