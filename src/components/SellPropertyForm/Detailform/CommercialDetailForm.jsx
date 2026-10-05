@@ -241,6 +241,7 @@ const CommercialPropertyDetailsForm = () => {
   const roadPlan = Form.useWatch("road_plan", form);
   const pathwayAvailable = Form.useWatch("pathway", form);
   const totalFloor = Form.useWatch("total_floor", form);
+  const availabilityStatus = Form.useWatch("avail_status", form);
 
   const isOnRoad = roadPlan === "on";
   const isInterior = roadPlan === "off";
@@ -532,6 +533,12 @@ const CommercialPropertyDetailsForm = () => {
           propertyDetails.pathway_width !== ""
             ? Number(propertyDetails.pathway_width)
             : propertyDetails.pathway_width,
+
+        avail_status:
+          propertyDetails.avail_status !== undefined &&
+          propertyDetails.avail_status !== ""
+            ? Number(propertyDetails.avail_status)
+            : propertyDetails.avail_status,
       };
 
       // ---------------------------------------------------
@@ -996,7 +1003,15 @@ const CommercialPropertyDetailsForm = () => {
         >
           <ToggleGroup
             options={availabilityStatusOptions}
-            onChange={(value) => handleFieldChange("avail_status", value)}
+            value={
+              availabilityStatus !== undefined && availabilityStatus !== null
+                ? Number(availabilityStatus)
+                : availabilityStatus
+            }
+            onChange={(value) => {
+              form.setFieldValue("avail_status", value);
+              handleFieldChange("avail_status", value);
+            }}
           />
         </Form.Item>
 

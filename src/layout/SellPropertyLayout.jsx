@@ -85,6 +85,7 @@ const SellPropertyContent = () => {
             construct: data.construct,
             construct_type: data.construct_type,
             other_type: data.other_type,
+            bhk: data.bhk,
           },
 
           propertyFeatures: {

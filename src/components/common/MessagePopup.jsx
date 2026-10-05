@@ -47,8 +47,13 @@ const StatusMessage = ({ placement = "top-right" }) => {
     const updatePosition = () => {
       const header = document.getElementById("main-header");
 
-      if (!header) return;
+      // No main header → dashboard
+      if (!header) {
+        setTop(50);
+        return;
+      }
 
+      // Existing website behavior
       const rect = header.getBoundingClientRect();
 
       setTop(rect.bottom + 16);

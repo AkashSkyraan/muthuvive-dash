@@ -6,7 +6,6 @@ import Dashboard from "../layout/dashboardLayout";
 import SellPropertyLayout from "../layout/SellPropertyLayout";
 import AuthLayout from "../layout/AuthLayout";
 
-import amenitiesRoutes from "./Amenities.routes";
 import highlightsRoutes from "./Highlights.routes";
 import galleryRoutes from "./Gallery.routes";
 import testimonialsRoutes from "./Testimonials.routes";
@@ -17,6 +16,8 @@ import propertyAreaRoutes from "./propertyArea.routes";
 import aboutUsRoutes from "./Aboutus.routes";
 import enquiryRoutes from "./Enquiry.routes";
 import constructionConsultantRoutes from "./construct.routes";
+import testimonialsRoutes from "./Testimonials.routes";
+import individualPropertyRoutes from "./IndividualProperty";
 
 import { AuthProvider } from "../context/AuthContext";
 import propertyListRoutes from "./propertylist.routes";
@@ -64,6 +65,7 @@ const appRoutes = [
     element: <SellPropertyLayout />,
     children: [...addpropertiesRoutes],
   },
+<<<<<<< HEAD
 
   // =========================
   // DEFAULT ROUTE
@@ -72,6 +74,9 @@ const appRoutes = [
     path: "*",
     element: <Navigate to="/login" replace />,
   },
+=======
+  ...individualPropertyRoutes,
+>>>>>>> e83678397166be2b148984eb760d7f35735e31c5
 ];
 
 const AppRouter = () => {
