@@ -111,6 +111,11 @@ const AddPropertyHighlight = () => {
                 whitespace: true,
                 message: "Property highlight cannot be empty",
               },
+              {
+                // min: 3,
+                max: 60,
+                message: "Property highlight must be maximum 60 characters",
+              },
             ]}
           >
             <Input placeholder="Enter property highlight" size="large" />

@@ -5,7 +5,7 @@ import FormNavigationButtons from "../../formNavButtons";
 import { useNavigate } from "react-router-dom";
 import { useSellProperty } from "../../../context/SellPropertyContext";
 import { postSellPropertyForm } from "../../../api/sellPropertyForm.api";
-import { useAuth } from "../../../context/UserContext";
+import { useAuth } from "../../../context/AuthContext";
 
 // ---------------------------------------------------------
 // Options

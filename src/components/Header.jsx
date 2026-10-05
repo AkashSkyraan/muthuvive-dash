@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  UserOutlined,
-  LogoutOutlined,
-  DownOutlined,
-} from "@ant-design/icons";
+import { UserOutlined, LogoutOutlined, DownOutlined } from "@ant-design/icons";
 import { Popover, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";

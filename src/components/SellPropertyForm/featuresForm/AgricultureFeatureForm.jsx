@@ -8,7 +8,7 @@ import {
   getPropertyHighlight,
 } from "../../../api/propertyFormDropdown.api";
 import { postSellPropertyForm } from "../../../api/sellPropertyForm.api";
-import { useAuth } from "../../../context/UserContext";
+import { useAuth } from "../../../context/AuthContext";
 
 const VISIBLE_COUNT = 7;
 

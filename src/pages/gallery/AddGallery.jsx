@@ -25,6 +25,18 @@ const AddGallery = () => {
     }
   };
 
+  // 5 MB file size validation
+  const beforeUpload = (file) => {
+    const isWithinLimit = file.size / 1024 / 1024 <= 5;
+
+    if (!isWithinLimit) {
+      message.error("Image must be 5 MB or smaller");
+      return Upload.LIST_IGNORE;
+    }
+
+    return false;
+  };
+
   const handleFinish = async (values) => {
     if (!file) {
       message.error("Please select an image");
@@ -92,7 +104,7 @@ const AddGallery = () => {
             <Upload
               maxCount={1}
               accept="image/*"
-              beforeUpload={() => false}
+              beforeUpload={beforeUpload}
               fileList={fileList}
               onChange={handleFileChange}
               onRemove={() => {

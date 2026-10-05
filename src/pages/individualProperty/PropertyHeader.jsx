@@ -5,9 +5,14 @@ import icons from "../../config/Icons.jsx";
 // import { useAboutUs } from "../../../context/AboutusContext.jsx";
 import { showStatusMessage } from "../../components/common/MessagePopup.jsx";
 // import { postBookmark } from "../../../api/getProperties.api.js";
+<<<<<<< HEAD
 
 import { useAuth } from "../../context/UserContext.jsx";
 import { IndianRupee } from "lucide-react";
+=======
+import { IndianRupee } from "lucide-react";
+import { useAuth } from "../../context/AuthContext.jsx";
+>>>>>>> 85ae8bd33fd1b2b6783d5810568adb8f75f8aed0
 // import { useLoginModal } from "../../../context/LoginModalContext.jsx";
 
 const PropertyHeader = ({ data = {} }) => {
