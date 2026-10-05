@@ -2,7 +2,7 @@ import PropertyDetails from "../pages/individualProperty/Index";
 
 const propertyRoutes = [
   {
-    path: "/dashboard/property/:propertyId",
+    path: "/property/:propertyId",
     element: <PropertyDetails />,
   },
 ];

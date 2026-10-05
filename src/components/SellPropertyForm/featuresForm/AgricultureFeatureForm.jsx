@@ -212,10 +212,10 @@ const PropertyFeaturesForm = () => {
 
       // EDIT FLOW
       if (mode === "edit") {
-        navigate(`/dashboard/edit-property/${propertyId}/media`);
+        navigate(`/edit-property/${propertyId}/media`);
       } else {
         // EXISTING ADD FLOW
-        navigate("/dashboard/add-property/media");
+        navigate("/add-property/media");
       }
     } catch (error) {
       console.error("Property features validation failed:", error);
@@ -225,10 +225,10 @@ const PropertyFeaturesForm = () => {
   const handlePrevious = async () => {
     // EDIT FLOW
     if (mode === "edit") {
-      navigate(`/dashboard/edit-property/${propertyId}/details`);
+      navigate(`/edit-property/${propertyId}/details`);
     } else {
       // EXISTING ADD FLOW
-      navigate("/dashboard/add-property/details");
+      navigate("/add-property/details");
     }
   };
 

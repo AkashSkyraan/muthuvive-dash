@@ -16,11 +16,12 @@ import propertyAreaRoutes from "./propertyArea.routes";
 import aboutUsRoutes from "./Aboutus.routes";
 import enquiryRoutes from "./Enquiry.routes";
 import constructionConsultantRoutes from "./construct.routes";
-import testimonialsRoutes from "./Testimonials.routes";
+
 import individualPropertyRoutes from "./IndividualProperty";
 
 import { AuthProvider } from "../context/AuthContext";
 import propertyListRoutes from "./propertylist.routes";
+import amenitiesRoutes from "./Amenities.routes";
 
 const appRoutes = [
   // =========================
@@ -53,7 +54,7 @@ const appRoutes = [
       ...constructionConsultantRoutes,
       ...subAdminRoutes,
       ...planRoutes,
-      ...propertyListRoutes
+      ...propertyListRoutes,
     ],
   },
 
@@ -65,18 +66,12 @@ const appRoutes = [
     element: <SellPropertyLayout />,
     children: [...addpropertiesRoutes],
   },
-<<<<<<< HEAD
 
-  // =========================
-  // DEFAULT ROUTE
-  // =========================
   {
     path: "*",
     element: <Navigate to="/login" replace />,
   },
-=======
   ...individualPropertyRoutes,
->>>>>>> e83678397166be2b148984eb760d7f35735e31c5
 ];
 
 const AppRouter = () => {
@@ -86,7 +81,7 @@ const AppRouter = () => {
 const AppRoutes = () => {
   return (
     <AuthProvider>
-      <BrowserRouter  basename="/admin">
+      <BrowserRouter basename="/admin">
         <AppRouter />
       </BrowserRouter>
     </AuthProvider>

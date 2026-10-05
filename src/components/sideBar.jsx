@@ -198,6 +198,11 @@ const menuItems = [
         label: "Property List",
         icon: <UnorderedListOutlined />,
       },
+      {
+        key: "/add-property",
+        label: "Add Property",
+        icon: <PlusOutlined />,
+      },
     ],
   },
 ];
@@ -213,8 +218,6 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
 
   // const [collapsed, setCollapsed] = useState(false);
   const [openMenus, setOpenMenus] = useState({});
-
-
 
   const userRole = String(user?.role || "")
     .trim()
@@ -370,11 +373,13 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           MENU
       ====================================================== */}
 
-      <nav className="    h-[calc(100vh-64px)]
+      <nav
+        className="    h-[calc(100vh-64px)]
     overflow-y-auto
     overflow-x-hidden
     p-3
-    sidebar-scrollbar">
+    sidebar-scrollbar"
+      >
         {visibleMenuItems.map((item) => {
           const parentActive = isParentActive(item);
 
