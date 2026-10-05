@@ -217,7 +217,7 @@ const ConstructionConsultantList = () => {
             
             onClick={() =>
               navigate(
-                `/admin/dashboard/const-consultants/edit/${record.id}`,
+                `/const-consultants/edit/${record.id}`,
               )
             }
           >
@@ -246,7 +246,7 @@ const ConstructionConsultantList = () => {
           type="primary"
           icon={<PlusOutlined />}
           onClick={() =>
-            navigate("/admin/dashboard/const-consultants/create")
+            navigate("/const-consultants/create")
           }
         >
           Add Consultant

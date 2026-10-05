@@ -75,7 +75,7 @@ function Login() {
         // Update AuthContext
         login(userData);
 
-        navigate("/admin/dashboard", {
+        navigate("/", {
           replace: true,
         });
 

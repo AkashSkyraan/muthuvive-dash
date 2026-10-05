@@ -233,7 +233,7 @@ const PlanList = () => {
           <Button
             type="text"
             icon={<EditOutlined />}
-            onClick={() => navigate(`/admin/dashboard/plans/edit/${record.id}`)}
+            onClick={() => navigate(`/plans/edit/${record.id}`)}
           />
         </Space>
       ),
@@ -256,7 +256,7 @@ const PlanList = () => {
         <Button
           type="primary"
           icon={<PlusOutlined />}
-          onClick={() => navigate("/admin/dashboard/plans/create")}
+          onClick={() => navigate("/plans/create")}
         >
           Add Plan
         </Button>

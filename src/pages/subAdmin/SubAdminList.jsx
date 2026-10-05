@@ -217,7 +217,7 @@ const SubAdminList = () => {
             type="text"
             icon={<EditOutlined />}
             onClick={() =>
-              navigate(`/admin/dashboard/sub-admin/edit/${record.id}`)
+              navigate(`/sub-admin/edit/${record.id}`)
             }
           />
         </Space>
@@ -244,7 +244,7 @@ const SubAdminList = () => {
         <Button
           type="primary"
           icon={<PlusOutlined />}
-          onClick={() => navigate("/admin/dashboard/sub-admin/create")}
+          onClick={() => navigate("/sub-admin/create")}
         >
           Create Sub Admin
         </Button>

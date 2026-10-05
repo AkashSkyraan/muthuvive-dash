@@ -164,7 +164,7 @@ const CreatePropertyArea = () => {
         );
 
         navigate(
-          "/admin/dashboard/property-area/list",
+          "/property-area/list",
         );
 
         return;
@@ -228,7 +228,7 @@ const CreatePropertyArea = () => {
       );
 
       navigate(
-        "/admin/dashboard/property-area/list",
+        "/property-area/list",
       );
     } finally {
       setLoading(false);
@@ -566,7 +566,7 @@ const CreatePropertyArea = () => {
         );
 
         navigate(
-          "/admin/dashboard/property-area/list",
+          "/property-area/list",
         );
 
         return;
@@ -603,7 +603,7 @@ const CreatePropertyArea = () => {
 
   const handleBack = () => {
     navigate(
-      "/admin/dashboard/property-area/list",
+      "/property-area/list",
     );
   };
 

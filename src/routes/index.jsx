@@ -1,26 +1,25 @@
-import React, { useState } from "react";
-import { BrowserRouter, useRoutes } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, useRoutes, Navigate } from "react-router-dom";
 
 import Login from "../pages/auth/Login";
 import Dashboard from "../layout/dashboardLayout";
+import SellPropertyLayout from "../layout/SellPropertyLayout";
+import AuthLayout from "../layout/AuthLayout";
 
 import amenitiesRoutes from "./Amenities.routes";
 import highlightsRoutes from "./Highlights.routes";
 import galleryRoutes from "./Gallery.routes";
-
-import SellPropertyLayout from "../layout/SellPropertyLayout";
-import amenitiesRoutes from "./Amenities.routes";
+import testimonialsRoutes from "./Testimonials.routes";
 import addpropertiesRoutes from "./SellPropertyForm.routes";
-import AuthLayout from "../layout/AuthLayout";
-
-import { AuthProvider } from "../context/AuthContext";
-import ProtectedRoute from "./ProtectedRoutes";
 import subAdminRoutes from "./subadmin.routes";
 import planRoutes from "./plan.routes";
 import propertyAreaRoutes from "./propertyArea.routes";
 import aboutUsRoutes from "./Aboutus.routes";
 import enquiryRoutes from "./Enquiry.routes";
 import constructionConsultantRoutes from "./construct.routes";
+
+import { AuthProvider } from "../context/AuthContext";
+import propertyListRoutes from "./propertylist.routes";
 
 const appRoutes = [
   // =========================
@@ -30,7 +29,7 @@ const appRoutes = [
     element: <AuthLayout />,
     children: [
       {
-        path: "/login",
+        path: "login",
         element: <Login />,
       },
     ],
@@ -40,7 +39,7 @@ const appRoutes = [
   // PROTECTED ADMIN ROUTES
   // =========================
   {
-    path: "/dashboard",
+    path: "/",
     element: <Dashboard />,
     children: [
       ...amenitiesRoutes,
@@ -49,16 +48,29 @@ const appRoutes = [
       ...testimonialsRoutes,
       ...aboutUsRoutes,
       ...enquiryRoutes,
-      propertyAreaRoutes,
+      ...propertyAreaRoutes,
       ...constructionConsultantRoutes,
       ...subAdminRoutes,
       ...planRoutes,
+      ...propertyListRoutes
     ],
   },
+
+  // =========================
+  // SELL PROPERTY
+  // =========================
   {
-    path: "/dashboard",
+    path: "/",
     element: <SellPropertyLayout />,
     children: [...addpropertiesRoutes],
+  },
+
+  // =========================
+  // DEFAULT ROUTE
+  // =========================
+  {
+    path: "*",
+    element: <Navigate to="/login" replace />,
   },
 ];
 
@@ -67,10 +79,9 @@ const AppRouter = () => {
 };
 
 const AppRoutes = () => {
-  const [user, setUser] = useState(null);
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter  basename="/admin">
         <AppRouter />
       </BrowserRouter>
     </AuthProvider>

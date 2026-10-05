@@ -145,7 +145,7 @@ const PropertyAreaList = () => {
           type="text"
           icon={<EditOutlined />}
           onClick={() =>
-            navigate(`/admin/dashboard/property-area/edit/${record.id}`)
+            navigate(`/property-area/edit/${record.id}`)
           }
         />
       ),
@@ -171,7 +171,7 @@ const PropertyAreaList = () => {
         <Button
           type="primary"
           icon={<PlusOutlined />}
-          onClick={() => navigate("/admin/dashboard/property-area/create")}
+          onClick={() => navigate("/property-area/create")}
         >
           Create Property Area
         </Button>

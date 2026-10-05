@@ -23,7 +23,7 @@ const ConstructionConsultantForm = () => {
   const [fileList, setFileList] = useState([]);
   const [existingImage, setExistingImage] = useState(null);
 
-  const LIST_URL = "/admin/dashboard/const-consultants/list";
+  const LIST_URL = "/const-consultants/list";
 
   /**
    * Get existing consultant

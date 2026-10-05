@@ -73,14 +73,14 @@ const CreatePlan = () => {
       } else {
         message.error(response?.data?.message || "Plan not found");
 
-        navigate("/admin/dashboard/plans/list");
+        navigate("/plans/list");
       }
     } catch (error) {
       console.error("Get Plan Error:", error?.response?.data || error);
 
       message.error(error?.response?.data?.message || "Failed to fetch plan");
 
-      navigate("/admin/dashboard/plans/list");
+      navigate("/plans/list");
     } finally {
       setFetchLoading(false);
     }
@@ -130,7 +130,7 @@ const CreatePlan = () => {
               : "Plan created successfully"),
         );
 
-        navigate("/admin/dashboard/plans/list");
+        navigate("/plans/list");
       } else {
         message.error(
           response?.data?.message ||
@@ -168,7 +168,7 @@ const CreatePlan = () => {
 
         <Button
           icon={<ArrowLeftOutlined />}
-          onClick={() => navigate("/admin/dashboard/plans/list")}
+          onClick={() => navigate("/plans/list")}
         >
           Back to List
         </Button>
@@ -355,7 +355,7 @@ const CreatePlan = () => {
             <Space>
               <Button
                 size="large"
-                onClick={() => navigate("/admin/dashboard/plans/list")}
+                onClick={() => navigate("/plans/list")}
               >
                 Cancel
               </Button>

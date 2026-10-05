@@ -14,7 +14,7 @@ const CreateAboutUs = () => {
   const [loading, setLoading] = useState(false);
 
   const goBack = () => {
-    navigate("/admin/dashboard/aboutus/list");
+    navigate("/aboutus/list");
   };
 
   const getAboutUs = async () => {

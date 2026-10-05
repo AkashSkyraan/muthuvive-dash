@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   PictureOutlined,
   PlusOutlined,
@@ -15,10 +15,12 @@ import {
   MessageOutlined,
 } from "@ant-design/icons";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 import { Popover } from "antd";
+import { useAuth } from "../context/AuthContext";
 
-const ADMIN_PREFIX = "admin/dashboard";
+/* =========================================================
+   MENU ITEMS
+========================================================= */
 
 const menuItems = [
   {
@@ -27,12 +29,12 @@ const menuItems = [
     icon: <AppstoreOutlined />,
     children: [
       {
-        key: `${ADMIN_PREFIX}/amenities/add`,
+        key: "/amenities/add",
         label: "Add Amenities",
         icon: <PlusOutlined />,
       },
       {
-        key: `${ADMIN_PREFIX}/amenities/list`,
+        key: "/amenities/list",
         label: "List Amenities",
         icon: <UnorderedListOutlined />,
       },
@@ -45,12 +47,12 @@ const menuItems = [
     icon: <HighlightOutlined />,
     children: [
       {
-        key: `${ADMIN_PREFIX}/highlights/add`,
+        key: "/highlights/add",
         label: "Add Property Highlights",
         icon: <PlusOutlined />,
       },
       {
-        key: `${ADMIN_PREFIX}/highlights/list`,
+        key: "/highlights/list",
         label: "List Property Highlights",
         icon: <UnorderedListOutlined />,
       },
@@ -63,30 +65,38 @@ const menuItems = [
     icon: <PictureOutlined />,
     children: [
       {
-        key: `${ADMIN_PREFIX}/gallery/add`,
+        key: "/gallery/add",
         label: "Add Gallery Images",
         icon: <PlusOutlined />,
       },
       {
-        key: `${ADMIN_PREFIX}/gallery/list`,
+        key: "/gallery/list",
         label: "List Gallery Images",
         icon: <UnorderedListOutlined />,
       },
     ],
   },
 
+  /* =======================================================
+     SUB ADMIN
+     
+     IMPORTANT:
+     This menu will be shown ONLY for admin.
+  ======================================================= */
+
   {
     key: "sub-admin",
     label: "Sub Admin",
     icon: <UserOutlined />,
+    adminOnly: true,
     children: [
       {
-        key: `${ADMIN_PREFIX}/sub-admin/create`,
+        key: "/sub-admin/create",
         label: "Create Sub Admin",
         icon: <PlusOutlined />,
       },
       {
-        key: `${ADMIN_PREFIX}/sub-admin/list`,
+        key: "/sub-admin/list",
         label: "Sub Admin List",
         icon: <UnorderedListOutlined />,
       },
@@ -99,12 +109,12 @@ const menuItems = [
     icon: <DollarOutlined />,
     children: [
       {
-        key: `${ADMIN_PREFIX}/plans/create`,
+        key: "/plans/create",
         label: "Create Plan",
         icon: <PlusOutlined />,
       },
       {
-        key: `${ADMIN_PREFIX}/plans/list`,
+        key: "/plans/list",
         label: "Plan List",
         icon: <UnorderedListOutlined />,
       },
@@ -117,12 +127,12 @@ const menuItems = [
     icon: <EnvironmentOutlined />,
     children: [
       {
-        key: `${ADMIN_PREFIX}/property-area/create`,
+        key: "/property-area/create",
         label: "Create Property Area",
         icon: <PlusOutlined />,
       },
       {
-        key: `${ADMIN_PREFIX}/property-area/list`,
+        key: "/property-area/list",
         label: "Property Area List",
         icon: <UnorderedListOutlined />,
       },
@@ -135,12 +145,12 @@ const menuItems = [
     icon: <InfoCircleOutlined />,
     children: [
       {
-        key: `${ADMIN_PREFIX}/aboutus/create`,
+        key: "/aboutus/create",
         label: "Create About Us",
         icon: <PlusOutlined />,
       },
       {
-        key: `${ADMIN_PREFIX}/aboutus/list`,
+        key: "/aboutus/list",
         label: "About Us List",
         icon: <UnorderedListOutlined />,
       },
@@ -153,7 +163,7 @@ const menuItems = [
     icon: <MessageOutlined />,
     children: [
       {
-        key: `${ADMIN_PREFIX}/enquiry/list`,
+        key: "/enquiry/list",
         label: "Enquiry List",
         icon: <UnorderedListOutlined />,
       },
@@ -166,40 +176,101 @@ const menuItems = [
     icon: <UserOutlined />,
     children: [
       {
-        key: `${ADMIN_PREFIX}/const-consultants/create`,
+        key: "/const-consultants/create",
         label: "Add Consultant",
         icon: <PlusOutlined />,
       },
       {
-        key: `${ADMIN_PREFIX}/const-consultants/list`,
+        key: "/const-consultants/list",
         label: "Consultant List",
+        icon: <UnorderedListOutlined />,
+      },
+    ],
+  },
+
+  {
+    key: "prop-list",
+    label: "Property List",
+    icon: <EnvironmentOutlined />,
+    children: [
+      {
+        key: "/property-list",
+        label: "Property List",
         icon: <UnorderedListOutlined />,
       },
     ],
   },
 ];
 
-const Sidebar = () => {
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+const Sidebar = ({ collapsed, setCollapsed }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuth();
 
-  const [collapsed, setCollapsed] = useState(false);
+  // const [collapsed, setCollapsed] = useState(false);
   const [openMenus, setOpenMenus] = useState({});
 
+  /* =======================================================
+     ROLE
+  ======================================================= */
+
+  const userRole = String(user?.role || "")
+    .trim()
+    .toLowerCase();
+
+  const isAdmin = userRole === "admin";
+
+  /* =======================================================
+     FILTER MENU BASED ON ROLE
+     
+     ADMIN:
+       -> All menus
+
+     SUB ADMIN:
+       -> All menus except Sub Admin
+  ======================================================= */
+
+  const visibleMenuItems = useMemo(() => {
+    return menuItems.filter((item) => {
+      if (item.adminOnly && !isAdmin) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [isAdmin]);
+
+  /* =========================================================
+     ACTIVE CHILD
+  ========================================================= */
+
   const isActive = (path) => {
-    return location.pathname === `/${path}`;
+    return location.pathname === path;
   };
+
+  /* =========================================================
+     ACTIVE PARENT
+  ========================================================= */
 
   const isParentActive = (item) => {
-    return item.children?.some(
-      (child) => location.pathname === `/${child.key}`,
-    );
+    return item.children?.some((child) => location.pathname === child.key);
   };
 
+  /* =========================================================
+     NAVIGATION
+  ========================================================= */
+
   const handleNavigate = (path) => {
-    navigate(`/${path}`);
+    navigate(path);
   };
+
+  /* =========================================================
+     TOGGLE MENU
+  ========================================================= */
 
   const toggleMenu = (key) => {
     setOpenMenus((prev) => ({
@@ -208,9 +279,13 @@ const Sidebar = () => {
     }));
   };
 
+  /* =========================================================
+     AUTO OPEN ACTIVE MENU
+  ========================================================= */
+
   useEffect(() => {
-    const activeParent = menuItems.find((item) =>
-      item.children?.some((child) => location.pathname === `/${child.key}`),
+    const activeParent = visibleMenuItems.find((item) =>
+      item.children?.some((child) => location.pathname === child.key),
     );
 
     if (activeParent) {
@@ -219,43 +294,55 @@ const Sidebar = () => {
         [activeParent.key]: true,
       }));
     }
-  }, [location.pathname]);
+  }, [location.pathname, visibleMenuItems]);
+
+  /* =========================================================
+     RENDER
+  ========================================================= */
 
   return (
     <aside
       className={`
-        shrink-0
-        h-screen
-        bg-white
-        border-r
-        border-gray-200
-        transition-all
-        duration-300
-        ${collapsed ? "w-20" : "w-72"}
-      `}
+    fixed
+    left-0
+    top-0
+    z-50
+    h-screen
+    bg-white
+    border-r
+    border-gray-200
+    transition-all
+    duration-300
+    ${collapsed ? "w-20" : "w-72"}
+  `}
     >
-      {/* Header */}
+      {/* =====================================================
+          HEADER
+      ====================================================== */}
       <div
         className="
-          h-16
-          flex
-          items-center
-          justify-between
-          px-5
-          border-b
-          border-gray-200
-        "
+    h-16
+    min-h-16
+    shrink-0
+    flex
+    items-center
+    justify-between
+    px-5
+    border-b
+    border-gray-200
+    bg-white
+  "
       >
         {!collapsed && (
           <span
             className="
-              text-xl
-              font-semibold
-              text-gray-800
-              whitespace-nowrap
-            "
+          text-xl
+          font-semibold
+          text-gray-800
+          whitespace-nowrap
+        "
           >
-            {user?.role?.toUpperCase()}
+            {user?.role?.toUpperCase() || "USER"}
           </span>
         )}
 
@@ -263,32 +350,42 @@ const Sidebar = () => {
           type="button"
           onClick={() => setCollapsed((prev) => !prev)}
           className={`
-            flex
-            items-center
-            justify-center
-            w-8
-            h-8
-            shrink-0
-            rounded-md
-            text-gray-500
-            hover:bg-gray-100
-            hover:text-gray-700
-            transition-colors
-            ${collapsed ? "mx-auto" : ""}
-          `}
+        flex
+        items-center
+        justify-center
+        w-8
+        h-8
+        shrink-0
+        rounded-md
+        text-gray-500
+        hover:bg-gray-100
+        hover:text-gray-700
+        transition-colors
+        ${collapsed ? "mx-auto" : ""}
+      `}
         >
           {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         </button>
       </div>
 
-      {/* Menu */}
-      <nav className="p-3  sidebar-scrollbar">
-        {menuItems.map((item) => {
+      {/* =====================================================
+          MENU
+      ====================================================== */}
+
+      <nav className="    h-[calc(100vh-64px)]
+    overflow-y-auto
+    overflow-x-hidden
+    p-3
+    sidebar-scrollbar">
+        {visibleMenuItems.map((item) => {
           const parentActive = isParentActive(item);
 
           return (
             <div key={item.key} className="mb-1">
-              {/* ================= COLLAPSED ================= */}
+              {/* =================================================
+                  COLLAPSED SIDEBAR
+              ================================================== */}
+
               {collapsed ? (
                 <Popover
                   placement="rightTop"
@@ -296,6 +393,8 @@ const Sidebar = () => {
                   arrow={false}
                   content={
                     <div className="w-52">
+                      {/* Parent Title */}
+
                       <div
                         className="
                           mb-2
@@ -310,30 +409,32 @@ const Sidebar = () => {
                         </span>
                       </div>
 
+                      {/* Children */}
+
                       <div className="space-y-1">
-                        {item.children.map((child) => (
+                        {item.children?.map((child) => (
                           <button
                             key={child.key}
                             type="button"
                             onClick={() => handleNavigate(child.key)}
                             className={`
-                              flex
-                              w-full
-                              items-center
-                              gap-3
-                              rounded-md
-                              px-3
-                              py-2
-                              text-left
-                              text-sm
-                              transition-colors
+                                flex
+                                w-full
+                                items-center
+                                gap-3
+                                rounded-md
+                                px-3
+                                py-2
+                                text-left
+                                text-sm
+                                transition-colors
 
-                              ${
-                                isActive(child.key)
-                                  ? "bg-blue-50 text-blue-600 font-medium"
-                                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-800"
-                              }
-                            `}
+                                ${
+                                  isActive(child.key)
+                                    ? "bg-blue-50 text-blue-600 font-medium"
+                                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-800"
+                                }
+                              `}
                           >
                             <span className="text-sm shrink-0">
                               {child.icon}
@@ -370,7 +471,10 @@ const Sidebar = () => {
                 </Popover>
               ) : (
                 <>
-                  {/* ================= PARENT ================= */}
+                  {/* =============================================
+                      PARENT MENU
+                  ============================================== */}
+
                   <button
                     type="button"
                     onClick={() => toggleMenu(item.key)}
@@ -407,7 +511,10 @@ const Sidebar = () => {
                     />
                   </button>
 
-                  {/* ================= CHILDREN ================= */}
+                  {/* =============================================
+                      CHILDREN
+                  ============================================== */}
+
                   {openMenus[item.key] && (
                     <div
                       className="
@@ -418,30 +525,30 @@ const Sidebar = () => {
                         pl-4
                       "
                     >
-                      {item.children.map((child) => (
+                      {item.children?.map((child) => (
                         <button
                           key={child.key}
                           type="button"
                           onClick={() => handleNavigate(child.key)}
                           className={`
-                            flex
-                            w-full
-                            items-center
-                            gap-3
-                            rounded-md
-                            px-3
-                            py-2
-                            mb-1
-                            text-left
-                            text-sm
-                            transition-colors
+                              flex
+                              w-full
+                              items-center
+                              gap-3
+                              rounded-md
+                              px-3
+                              py-2
+                              mb-1
+                              text-left
+                              text-sm
+                              transition-colors
 
-                            ${
-                              isActive(child.key)
-                                ? "bg-blue-50 text-blue-600 font-medium"
-                                : "text-gray-500 hover:bg-gray-50 hover:text-gray-800"
-                            }
-                          `}
+                              ${
+                                isActive(child.key)
+                                  ? "bg-blue-50 text-blue-600 font-medium"
+                                  : "text-gray-500 hover:bg-gray-50 hover:text-gray-800"
+                              }
+                            `}
                         >
                           <span className="text-sm shrink-0">{child.icon}</span>
 

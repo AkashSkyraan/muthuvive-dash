@@ -48,7 +48,7 @@ const CreateSubAdmin = () => {
       } else {
         message.error(response?.data?.message || "Failed to fetch sub admin");
 
-        navigate("/admin/dashboard/sub-admin/list");
+        navigate("/sub-admin/list");
       }
     } catch (error) {
       console.error("Get Sub Admin Error:", error?.response?.data || error);
@@ -57,7 +57,7 @@ const CreateSubAdmin = () => {
         error?.response?.data?.message || "Failed to fetch sub admin",
       );
 
-      navigate("/admin/dashboard/sub-admin/list");
+      navigate("/sub-admin/list");
     } finally {
       setFetchLoading(false);
     }
@@ -108,7 +108,7 @@ const CreateSubAdmin = () => {
 
         form.resetFields();
 
-        navigate("/admin/dashboard/sub-admin/list");
+        navigate("/sub-admin/list");
       } else {
         message.error(
           response?.data?.message ||
@@ -153,7 +153,7 @@ const CreateSubAdmin = () => {
 
         <Button
           icon={<ArrowLeftOutlined />}
-          onClick={() => navigate("/admin/dashboard/sub-admin/list")}
+          onClick={() => navigate("/sub-admin/list")}
         >
           Back to List
         </Button>
@@ -260,7 +260,7 @@ const CreateSubAdmin = () => {
             <Space>
               <Button
                 size="large"
-                onClick={() => navigate("/admin/dashboard/sub-admin/list")}
+                onClick={() => navigate("/sub-admin/list")}
               >
                 Cancel
               </Button>

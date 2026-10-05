@@ -189,7 +189,7 @@ const AboutUsList = () => {
           type="text"
           icon={<EditOutlined />}
           onClick={() =>
-            navigate(`/admin/dashboard/aboutus/edit/${record.id}`)
+            navigate(`/aboutus/edit/${record.id}`)
           }
         />
       ),
@@ -218,7 +218,7 @@ const AboutUsList = () => {
         <Button
           type="primary"
           icon={<PlusOutlined />}
-          onClick={() => navigate("/admin/dashboard/about-us/create")}
+          onClick={() => navigate("/about-us/create")}
         >
           Create About Us
         </Button>
