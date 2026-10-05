@@ -67,9 +67,6 @@ const appRoutes = [
     children: [...addpropertiesRoutes],
   },
 
-  // =========================
-  // DEFAULT ROUTE
-  // =========================
   {
     path: "*",
     element: <Navigate to="/login" replace />,

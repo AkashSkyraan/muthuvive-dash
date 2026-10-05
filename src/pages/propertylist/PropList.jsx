@@ -589,8 +589,7 @@ const PropertyList = () => {
       property_type
     */
 
-    const typeId =
-      record?.property_type_id ?? record?.type_id ?? record?.property_type;
+    const typeId = record?.category ?? record?.type_id ?? record?.property_type;
 
     if (!typeId) {
       return "-";
@@ -747,9 +746,7 @@ const PropertyList = () => {
               <Button
                 type="text"
                 icon={<EyeOutlined />}
-                onClick={() =>
-                  navigate(`/property-area/view/${record.prop_id}`)
-                }
+                onClick={() => navigate(`/property/${record.prop_id}`)}
               />
             </Tooltip>
 
@@ -759,9 +756,7 @@ const PropertyList = () => {
               <Button
                 type="text"
                 icon={<EditOutlined />}
-                onClick={() =>
-                  navigate(`/property-area/edit/${record.prop_id}`)
-                }
+                onClick={() => navigate(`/edit-property/${record.prop_id}`)}
               />
             </Tooltip>
 
@@ -772,7 +767,7 @@ const PropertyList = () => {
                 <Button
                   type="text"
                   icon={<CheckOutlined />}
-                  onClick={() => openStatusModal(record, "accepted")}
+                  onClick={() => openStatusModal(record, "approved")}
                 />
               </Tooltip>
             )}
@@ -816,7 +811,7 @@ const PropertyList = () => {
 
             {/* POSTED -> EXPIRED */}
 
-            {nextStatuses.includes("expired") && (
+            {/* {nextStatuses.includes("expired") && (
               <Tooltip title="Expired">
                 <Button
                   type="text"
@@ -824,7 +819,7 @@ const PropertyList = () => {
                   onClick={() => openStatusModal(record, "expired")}
                 />
               </Tooltip>
-            )}
+            )} */}
           </Space>
         );
       },
@@ -888,7 +883,7 @@ const PropertyList = () => {
                 label: "Requested",
               },
               {
-                value: "accepted",
+                value: "approved",
                 label: "Accepted",
               },
               {

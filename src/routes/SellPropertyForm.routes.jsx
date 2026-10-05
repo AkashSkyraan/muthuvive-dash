@@ -8,7 +8,7 @@ import MediaForm from "../pages/SellProperty/MediaForm";
 
 const sellPropertyRoutes = [
   {
-    path: "add-property",
+    path: "/add-property",
     // element: <SellPropertyLayout />,
     children: [
       {
@@ -35,7 +35,7 @@ const sellPropertyRoutes = [
   },
   // EDIT PROPERTY ROUTES FLOW
   {
-    path: "edit-property/:prop_id",
+    path: "/edit-property/:prop_id",
     // element: <SellPropertyLayout />,
     children: [
       {

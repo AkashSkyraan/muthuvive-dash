@@ -4,9 +4,12 @@ import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
 
 import { postUpload } from "../../api/upload.api";
 import { postGallery } from "../../api/gallery.api";
+import { useNavigate } from "react-router-dom";
 
 const AddGallery = () => {
   const [form] = Form.useForm();
+
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
@@ -54,6 +57,7 @@ const AddGallery = () => {
       form.resetFields();
       setFile(null);
       setFileList([]);
+      navigate("/gallery/list");
     } catch (error) {
       console.error("Error adding gallery:", error);
 

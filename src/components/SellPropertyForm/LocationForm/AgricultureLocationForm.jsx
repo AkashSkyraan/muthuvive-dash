@@ -358,9 +358,9 @@ const LocationForm = () => {
 
       // Move to next step only after successful API call
       if (mode === "edit") {
-        navigate(`/dashboard/edit-property/${propertyId}/details`);
+        navigate(`/edit-property/${propertyId}/details`);
       } else {
-        navigate("/dashboard/add-property/details");
+        navigate("/add-property/details");
       }
     } catch (error) {
       console.error("Failed to save property:", error);

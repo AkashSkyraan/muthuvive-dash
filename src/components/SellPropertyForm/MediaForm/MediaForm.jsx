@@ -1549,9 +1549,9 @@ const MediaUploadForm = () => {
 
   const handlePrevious = async () => {
     if (mode === "edit") {
-      navigate(`/dashboard/edit-property/${propertyId}/features`);
+      navigate(`/edit-property/${propertyId}/features`);
     } else {
-      navigate("/dashboard/add-property/features");
+      navigate("/add-property/features");
     }
   };
 

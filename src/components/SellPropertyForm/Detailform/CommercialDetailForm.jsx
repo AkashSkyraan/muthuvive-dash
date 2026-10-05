@@ -593,9 +593,9 @@ const CommercialPropertyDetailsForm = () => {
       // ---------------------------------------------------
 
       if (mode === "edit") {
-        navigate(`/dashboard/edit-property/${propertyId}/features`);
+        navigate(`/edit-property/${propertyId}/features`);
       } else {
-        navigate("/dashboard/add-property/features");
+        navigate("/add-property/features");
       }
     } catch (error) {
       // AntD validation error
@@ -605,9 +605,9 @@ const CommercialPropertyDetailsForm = () => {
 
   const handlePrevious = async () => {
     if (mode === "edit") {
-      navigate(`/dashboard/edit-property/${propertyId}`);
+      navigate(`/edit-property/${propertyId}`);
     } else {
-      navigate("/dashboard/add-property/location");
+      navigate("/add-property/location");
     }
   };
 

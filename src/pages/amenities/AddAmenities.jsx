@@ -53,7 +53,7 @@ const AddAmenity = () => {
       );
 
       form.resetFields();
-      navigate("/dashboard/amenities/list");
+      navigate("/amenities/list");
     } catch (error) {
       console.error(
         record?.id ? "Error updating amenity:" : "Error adding amenity:",

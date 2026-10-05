@@ -199,7 +199,7 @@ const PropertyCategoryForm = ({ onPrevious }) => {
     updateFormData("category", "category", values.category);
 
     // Step 1 moves to Step 2
-    navigate("/dashboard/add-property/location");
+    navigate("/add-property/location");
   };
 
   const isNextDisabled = !categoryValue;

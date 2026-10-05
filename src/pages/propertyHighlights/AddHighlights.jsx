@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Form, Input, Button, message } from "antd";
 import { PlusOutlined, EditOutlined } from "@ant-design/icons";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { postHighlights } from "../../api/highlights.api";
 
 const AddPropertyHighlight = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const location = useLocation();
 
@@ -59,6 +61,7 @@ const AddPropertyHighlight = () => {
       );
 
       form.resetFields();
+      navigate("/highlights/list");
     } catch (error) {
       console.error(
         record?.id
