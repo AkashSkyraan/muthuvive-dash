@@ -23,12 +23,12 @@ export const AuthProvider = ({ children }) => {
       console.error("Get User Error:", error);
       setUser(null);
     } finally {
-      setUser({
-        id: 1,
-        user_name: "AKASH",
-        email: "abcdef@gmail.com",
-        mobile: "9876543210",
-      });
+      // setUser({
+      //   id: 1,
+      //   user_name: "AKASH",
+      //   email: "abcdef@gmail.com",
+      //   mobile: "9876543210",
+      // });
       setLoading(false);
     }
   };

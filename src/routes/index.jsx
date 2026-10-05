@@ -4,7 +4,6 @@ import { BrowserRouter, useRoutes } from "react-router-dom";
 import Login from "../pages/auth/Login";
 import Dashboard from "../layout/dashboardLayout";
 
-import amenitiesRoutes from "./Amenities.routes";
 import highlightsRoutes from "./Highlights.routes";
 import galleryRoutes from "./Gallery.routes";
 
@@ -21,6 +20,8 @@ import propertyAreaRoutes from "./propertyArea.routes";
 import aboutUsRoutes from "./Aboutus.routes";
 import enquiryRoutes from "./Enquiry.routes";
 import constructionConsultantRoutes from "./construct.routes";
+import testimonialsRoutes from "./Testimonials.routes";
+import individualPropertyRoutes from "./IndividualProperty";
 
 const appRoutes = [
   // =========================
@@ -60,6 +61,7 @@ const appRoutes = [
     element: <SellPropertyLayout />,
     children: [...addpropertiesRoutes],
   },
+  ...individualPropertyRoutes,
 ];
 
 const AppRouter = () => {

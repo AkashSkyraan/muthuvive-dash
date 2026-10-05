@@ -52,13 +52,13 @@ export const sellPropertyFormConfig = {
   "Commercial Buildings": {
     location: AgricultureLocationForm,
     details: CommercialDetailForm,
-    features: AgricultureFeatureForm,
+    features: CommercialFeatureForm,
     media: MediaForm,
   },
   "Residential Buildings": {
     location: AgricultureLocationForm,
-    details: AgricultureDetailForm,
-    features: AgricultureFeatureForm,
+    details: CommercialDetailForm,
+    features: CommercialFeatureForm,
     media: MediaForm,
   },
 };
