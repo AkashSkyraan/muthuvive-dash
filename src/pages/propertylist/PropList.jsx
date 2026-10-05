@@ -588,7 +588,7 @@ const PropertyList = () => {
       type_id
       property_type
     */
-
+    // console.log("first")
     const typeId = record?.category ?? record?.type_id ?? record?.property_type;
 
     if (!typeId) {
