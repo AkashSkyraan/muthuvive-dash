@@ -22,6 +22,7 @@ import individualPropertyRoutes from "./IndividualProperty";
 import { AuthProvider } from "../context/AuthContext";
 import propertyListRoutes from "./propertylist.routes";
 import amenitiesRoutes from "./Amenities.routes";
+import ProtectedRoute from "./ProtectedRoute";
 
 const appRoutes = [
   // =========================
@@ -41,37 +42,46 @@ const appRoutes = [
   // PROTECTED ADMIN ROUTES
   // =========================
   {
-    path: "/",
-    element: <Dashboard />,
+    element: <ProtectedRoute />,
     children: [
-      ...amenitiesRoutes,
-      ...highlightsRoutes,
-      ...galleryRoutes,
-      ...testimonialsRoutes,
-      ...aboutUsRoutes,
-      ...enquiryRoutes,
-      ...propertyAreaRoutes,
-      ...constructionConsultantRoutes,
-      ...subAdminRoutes,
-      ...planRoutes,
-      ...propertyListRoutes,
-    ],
-  },
+      {
+        path: "/",
+        element: <Dashboard />,
+        children: [
+          {
+            index: true,
+            element: <Navigate to="/enquiry/list" replace />,
+          },
+          ...amenitiesRoutes,
+          ...highlightsRoutes,
+          ...galleryRoutes,
+          ...testimonialsRoutes,
+          ...aboutUsRoutes,
+          ...enquiryRoutes,
+          ...propertyAreaRoutes,
+          ...constructionConsultantRoutes,
+          ...subAdminRoutes,
+          ...planRoutes,
+          ...propertyListRoutes,
+        ],
+      },
 
-  // =========================
-  // SELL PROPERTY
-  // =========================
-  {
-    path: "/",
-    element: <SellPropertyLayout />,
-    children: [...addpropertiesRoutes],
+      // =========================
+      // SELL PROPERTY
+      // =========================
+      {
+        path: "/",
+        element: <SellPropertyLayout />,
+        children: [...addpropertiesRoutes],
+      },
+      ...individualPropertyRoutes,
+    ],
   },
 
   {
     path: "*",
     element: <Navigate to="/login" replace />,
   },
-  ...individualPropertyRoutes,
 ];
 
 const AppRouter = () => {

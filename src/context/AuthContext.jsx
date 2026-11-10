@@ -9,6 +9,8 @@ export const AuthProvider = ({ children }) => {
 
   // Get logged-in admin from backend
   const getCurrentUser = async () => {
+    setLoading(true);
+
     try {
       const response = await axiosInstance.get("/admin/auth/me");
 
@@ -38,6 +40,7 @@ export const AuthProvider = ({ children }) => {
   // Login success
   const login = (userData) => {
     setUser(userData);
+    setLoading(false);
   };
 
   // Logout

@@ -64,13 +64,13 @@ function Login() {
         password,
       });
 
-      console.log("LOGIN RESPONSE:", response.data);
+      // console.log("LOGIN RESPONSE:", response.data);
 
       if (response?.data?.success === 1) {
         const userData = response.data.data[0];
 
-        console.log("USER DATA:", userData);
-        console.log("ROLE:", userData.role);
+        // console.log("USER DATA:", userData);
+        // console.log("ROLE:", userData.role);
 
         // Update AuthContext
         login(userData);
